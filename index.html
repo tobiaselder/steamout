@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>WELCOME TO THE STEAMOUT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        background: url('natural_habitat.jpg') fixed;
+        background-size: cover;
+		overflow: hidden;
+      }
+
+      .credits {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <audio autoplay="" loop="" preload="">
+        <source src="song.mp3" type="audio/mpeg" />
+    </audio>
+    <canvas id="dolores"></canvas>
+    <p class="credits">
+      Secrets.
+    </p>
+
+    <script>
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      var timerID = 0;
+
+      var canvas = document.getElementById('dolores');
+      var ctx = canvas.getContext('2d');
+
+      canvas.width = width;
+      canvas.height = height;
+
+      var img = new Image;
+      img.src = 'bmw.png';
+
+      var xoffset = 56;
+      var yoffset = 56;
+
+      var mousePos = { x: null, y: null };
+
+    	var init = function() {
+        canvas.addEventListener('mousemove', function(evt) {
+          var rect = canvas.getBoundingClientRect();
+          mousePos = {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+          };
+        }, false);
+
+    		setInterval(update, 25);//Math.floor(Math.random() * 200));
+    	}
+
+    	var update = function() {
+        if (mousePos.x !== null && mousePos.y !== null) {
+          ctx.drawImage(img, mousePos.x - xoffset, mousePos.y - yoffset, img.width, img.height);
+        }
+    	}
+
+      init();
+    </script></body>
+</html>
